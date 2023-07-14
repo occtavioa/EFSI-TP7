@@ -1,42 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
+import { Outlet, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
-  const [productosRandom, setProductosRandom] = useState([]); 
-
-  useEffect(() => {
-    fetch('https://dummyjson.com/products')
-    .then(res => res.json())
-    .then((r) => {
-      console.log("1");
-      console.log(r);
-      console.log(r.products);
-      for (let i = 0; i < 6; i++) {
-        let pr;
-        do {
-          pr = r.products[Math.floor(Math.random()*29)]
-        } while(productosRandom.includes(pr))
-        setProductosRandom(productosRandom.toSpliced(0,0,pr))
-      }
-      console.log("2");
-    });
-  }, [])
-
-  useEffect(() => {
-    console.log(productosRandom);
-  }, [productosRandom])
-
   return (
     <div className="App">
-      <div className='carousel slide'>
-        <div className='carousel-inner'>
-          {/* {productosRandom.map(pr => 
-            <div key={pr.id} className='carousel-item'>
-              <img src={pr.images[0]}></img>
-            </div>)} */}
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">TP7</a>
+          {/* <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> */}
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <Link to={"/"}>Home</Link>
+              </li>
+              <li class="nav-item">
+                <Link to={"/productos"}>Productos</Link>
+              </li>
+              <li class="nav-item">
+                <Link to={"/contacto"}>Contacto</Link>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
+      <div className='container'>
+        <Outlet></Outlet>
       </div>
     </div>
   );
