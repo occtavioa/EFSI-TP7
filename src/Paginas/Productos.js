@@ -39,7 +39,7 @@ function Productos() {
             {
                 productos.filter(
                     p => p.category.includes(filtroCategoria) &&
-                    p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+                        p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
                 ).map(p =>
                     <div key={p.id}>
                         <CardProducto producto={p}></CardProducto>

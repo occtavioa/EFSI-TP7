@@ -7,6 +7,10 @@ import Home from './Paginas/Home';
 import Productos from './Paginas/Productos';
 import Producto from './Paginas/Producto';
 import Contacto from './Paginas/Contacto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const router = createBrowserRouter([
   {
