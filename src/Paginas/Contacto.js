@@ -1,7 +1,10 @@
+import FormContacto from "../Componentes/FormContacto";
+
 function Contacto() {
     return (
         <div>
-            Contacto
+            Contactanos!
+            <FormContacto></FormContacto>
         </div>
     )
 }

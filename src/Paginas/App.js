@@ -1,5 +1,4 @@
 import { Outlet, Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
