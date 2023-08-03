@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
-import Home from './Home';
-import Productos from './Productos';
-import Contacto from './Contacto';
+import App from './Paginas/App';
+import Home from './Paginas/Home';
+import Productos from './Paginas/Productos';
+import Producto from './Paginas/Producto';
+import Contacto from './Paginas/Contacto';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,17 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/productos",
-        element: <Productos></Productos>,
+        path: "productos",
+        children: [
+          {
+            index: true,
+            element: <Productos></Productos>
+          },
+          {
+            path: ":id",
+            element: <Producto></Producto>
+          }
+        ]
       },
       {
         path: "/contacto",
