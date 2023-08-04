@@ -1,3 +1,4 @@
+import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import CardProducto from "../Componentes/CardProducto";
 
@@ -21,31 +22,41 @@ function Productos() {
     }, [])
 
     return (
-        <div>
-            Productos
-            <select onChange={e => {
-                setFiltroCategoria(e.target.value)
-            }}>
-                <option value={""}>Todas</option>
+        <div style={{display:"flex"}}>
+            <div>
+                <TextField label="Buscar" variant="standard" onChange={e => {
+                    setFiltroBusqueda(e.target.value)
+                }}></TextField>
+                <FormControl fullWidth>
+                    <InputLabel id="categoria">Categoria</InputLabel>
+                    <Select
+                        labelId="categoria"
+                        label="Categoria"
+                        onChange={e => {
+                            setFiltroCategoria(e.target.value)
+                        }}
+                    >
+                        <MenuItem value={""} >Todas</MenuItem>
+                        {
+                            categorias.map((c, i) =>
+                                <MenuItem key={i} value={c}>{c}</MenuItem>
+                            )
+                        }
+                    </Select>
+                </FormControl>
+            </div>
+            <div style={{flexWrap: "wrap", display:"flex", flex: 1}}>
                 {
-                    categorias.map((c, i) =>
-                        <option key={i} value={c}>{c}</option>
+                    productos.filter(
+                        p => p.category.includes(filtroCategoria) &&
+                            p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+                    ).map(p =>
+                        <div key={p.id}>
+                            <CardProducto producto={p}></CardProducto>
+                        </div>
                     )
                 }
-            </select>
-            <input type={"text"} placeholder="Buscar" onChange={e => {
-                setFiltroBusqueda(e.target.value)
-            }}></input>
-            {
-                productos.filter(
-                    p => p.category.includes(filtroCategoria) &&
-                        p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
-                ).map(p =>
-                    <div key={p.id}>
-                        <CardProducto producto={p}></CardProducto>
-                    </div>
-                )
-            }
+            </div>
         </div>
     )
 }

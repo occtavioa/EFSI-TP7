@@ -10,14 +10,14 @@ function CardProducto({producto}) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                {producto.title}
+                    {producto.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                {producto.description}
+                    {producto.description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Link href={`/productos/${producto.id}`} underline="hover">Más información</Link>
+                <Link href={`/productos/${producto.id}`} underline="hover" variant="button">Más información</Link>
             </CardActions>
         </Card>
     )

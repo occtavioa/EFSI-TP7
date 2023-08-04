@@ -21,15 +21,25 @@ function App() {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
+              <Link href="/">
+                <Typography variant="inherit" component="div" sx={{ flexGrow: 1 }} color="white">
+                  TP-7
+                </Typography>
+              </Link>
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              TP-7
-            </Typography>
             <Button color="inherit">
-              <Link href='/productos'>Productos</Link>
+              <Link href='/productos' variant='inherit'>
+                <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+                  Productos
+                </Typography>
+              </Link>
             </Button>
             <Button color="inherit">
-              <Link href='/contacto'>Contacto</Link>
+              <Link href='/contacto' variant='inherit'>
+                <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+                  Contacto
+                </Typography>
+              </Link>
             </Button>
           </Toolbar>
         </AppBar>
