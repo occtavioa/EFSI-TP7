@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import CardProducto from '../Componentes/CardProducto';
+import ListaProductos from '../Componentes/ListaProductos';
 
 function Home() {
-    const [productosRandom, setProductosRandom] = useState([]);
+    const [productosRandom, setProductosRandom] = useState(null);
 
     useEffect(() => {
         fetch('https://dummyjson.com/products')
@@ -12,7 +13,7 @@ function Home() {
                 for (let i = 0; i < 6; i++) {
                     let pr;
                     do {
-                        pr = r.products[Math.floor(Math.random() * 29)]
+                        pr = r.products[Math.floor(Math.random() * r.products.length-1)]
                     } while (prs.includes(pr))
                     prs.push(pr);
                 }
@@ -23,11 +24,8 @@ function Home() {
     return (
         <div>
             {
-                productosRandom.map(pr =>
-                    <div key={pr.id}>
-                        <CardProducto producto={pr}></CardProducto>                        
-                    </div>
-                )
+                productosRandom !== null &&
+                    <ListaProductos productos={productosRandom}></ListaProductos>
             }
         </div>
     );

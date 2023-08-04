@@ -27,20 +27,16 @@ function App() {
                 </Typography>
               </Link>
             </IconButton>
-            <Button color="inherit">
-              <Link href='/productos' variant='inherit'>
-                <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
-                  Productos
-                </Typography>
-              </Link>
-            </Button>
-            <Button color="inherit">
-              <Link href='/contacto' variant='inherit'>
-                <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
-                  Contacto
-                </Typography>
-              </Link>
-            </Button>
+            <Link href='/productos' variant='inherit' marginRight={"1%"}>
+              <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+                Productos
+              </Typography>
+            </Link>
+            <Link href='/contacto' variant='inherit'>
+              <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+                Contacto
+              </Typography>
+            </Link>
           </Toolbar>
         </AppBar>
       </Box>

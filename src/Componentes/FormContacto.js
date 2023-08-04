@@ -1,21 +1,30 @@
+import { FormControl, TextareaAutosize } from "@mui/base";
+import { FormControlLabel, FormLabel, InputLabel, TextField } from "@mui/material";
+
 function FormContacto() {
     return (
         <form onSubmit={e => {
             e.preventDefault();
         }}>
-            <label htmlFor="nombre">Nombre</label>
-            <input type={"text"} id="nombre" required/>
+            <div style={{display:"flex"}}>
+                <FormControl>
+                    <TextField label="Nombre" required></TextField>
+                </FormControl>
+                <FormControl>
+                    <TextField label="Apellido" required></TextField>
+                </FormControl>
+                <FormControl>
+                    <TextField label="Email" required></TextField>
+                </FormControl>
+            </div>
 
-            <label htmlFor="apellido">Apellido</label>
-            <input type={"text"} id="apellido" required/>
-
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" required/>
-
-            <label htmlFor="mensaje">Tu mensaje</label>
-            <textarea id="mensaje" required></textarea>
-
-            <button type="submit">Mandar</button>
+            <div style={{display: "flex"}}>
+                <FormControl>
+                    <FormLabel htmlFor="mensaje">Tu mensaje</FormLabel>
+                    <TextareaAutosize id="mensaje" required></TextareaAutosize>
+                </FormControl>
+                <button type="submit">Enviar</button>
+            </div>
         </form>
     )
 }

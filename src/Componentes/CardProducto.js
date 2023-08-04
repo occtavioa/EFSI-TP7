@@ -22,5 +22,5 @@ function CardProducto({producto}) {
         </Card>
     )
 }
-
+    
 export default CardProducto;
