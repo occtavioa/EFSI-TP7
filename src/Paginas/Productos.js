@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import CardProducto from "../Componentes/CardProducto";
-import GaleriaProductos from "../Componentes/GaleriaProductos";
+import ListaProductos from "../Componentes/ListaProductos";
 
 function Productos() {
+    const [productos, setProductos] = useState([])
     const [categorias, setCategorias] = useState([]);
     const [filtroCategoria, setFiltroCategoria] = useState("");
     const [filtroBusqueda, setFiltroBusqueda] = useState("");
@@ -14,6 +14,11 @@ function Productos() {
             .then(r => {
                 setCategorias(r)
             })
+        fetch('https://dummyjson.com/products')
+            .then(res => res.json())
+            .then(r => {
+                setProductos(r.products);
+            });
     }, [])
 
     return (
@@ -25,10 +30,7 @@ function Productos() {
                     }}></TextField>
                 </FormControl>
                 <FormControl fullWidth>
-                    <InputLabel id="categoria">Categoria</InputLabel>
                     <Select
-                        labelId="categoria"
-                        label="Categoria"
                         onChange={e => {
                             setFiltroCategoria(e.target.value)
                         }}
@@ -43,7 +45,10 @@ function Productos() {
                 </FormControl>
             </div>
 
-            <GaleriaProductos filtroBusqueda={filtroBusqueda} filtroCategoria={filtroCategoria}></GaleriaProductos>
+            <ListaProductos productos={productos.filter(p => 
+            p.category.includes(filtroCategoria) &&
+            p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+            )}></ListaProductos>
         </div>
     )
 }

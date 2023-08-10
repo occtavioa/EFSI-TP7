@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import CardProducto from '../Componentes/CardProducto';
 import ListaProductos from '../Componentes/ListaProductos';
 
 function Home() {
-    const [productosRandom, setProductosRandom] = useState(null);
+    const [productosRandom, setProductosRandom] = useState([]);
 
     useEffect(() => {
         fetch('https://dummyjson.com/products')
@@ -24,7 +23,7 @@ function Home() {
     return (
         <div>
             {
-                productosRandom !== null &&
+                productosRandom &&
                     <ListaProductos productos={productosRandom}></ListaProductos>
             }
         </div>

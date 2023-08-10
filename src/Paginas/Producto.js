@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 function Producto() {
     const {id} = useParams();
-    const [producto, setProducto] = useState(undefined);
+    const [producto, setProducto] = useState();
 
     useEffect(() => {
         fetch(`https://dummyjson.com/products/${id}`)
@@ -15,15 +15,14 @@ function Producto() {
 
     return (
         producto &&
-        <div>
-            {producto.title}
-            {
-                producto &&
+            <div>
+                {producto.title}
+                {
                     producto.images.map((img, i) => 
                         <img key={i} src={img}></img>
                     )
-            }
-        </div>
+                }
+            </div>
     )
 }
 
