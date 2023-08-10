@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import ListaProductos from "../Componentes/ListaProductos";
 
@@ -46,9 +46,11 @@ function Productos() {
             </div>
 
             <ListaProductos productos={productos.filter(p => 
-            p.category.includes(filtroCategoria) &&
-            p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
-            )}></ListaProductos>
+                p.category.includes(filtroCategoria) &&
+                p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+                )}
+            >
+            </ListaProductos>
         </div>
     )
 }
