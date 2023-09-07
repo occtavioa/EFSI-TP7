@@ -1,6 +1,11 @@
-import { Card, CardActions, CardContent, CardMedia, Typography, Link } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, Typography, Link, Button } from "@mui/material";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useContext } from "react";
+import { CarritoContext } from "../CarritoContext";
 
-function CardProducto({producto}) {
+function CardProducto({producto, añadido}) {
+    const {añadirIdProducto} = useContext(CarritoContext)
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -18,6 +23,11 @@ function CardProducto({producto}) {
             </CardContent>
             <CardActions>
                 <Link href={`/productos/${producto.id}`} underline="hover" variant="button">Más información</Link>
+                <Button disabled={añadido} onClick={() => {
+                    añadirIdProducto(producto.id)
+                }}>
+                    <AddShoppingCartIcon></AddShoppingCartIcon>
+                </Button>
             </CardActions>
         </Card>
     )

@@ -6,10 +6,26 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { Link } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import { CarritoContext } from '../CarritoContext';
 
 function App() {
+  const [idProductosAñadidos, setIdProcutosAñadidos] = React.useState([])
+  function añadirIdProducto(id) {
+    setIdProcutosAñadidos(
+      [
+        id,
+        ...idProductosAñadidos
+      ]
+    )
+  }
+  function quitarProducto(id) {
+    setIdProcutosAñadidos(
+      idProductosAñadidos.splice(idProductosAñadidos.findIndex(id))
+    )
+  }
+
   return (
-    <div>
+    <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto}}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -39,10 +55,9 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-      <div>
-        <Outlet></Outlet>
-      </div>
-    </div>
+
+      <Outlet></Outlet>
+    </CarritoContext.Provider>
   );
 }
 
