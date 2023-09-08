@@ -1,10 +1,12 @@
-import { Card, CardActions, CardContent, CardMedia, Typography, Link, Button } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useContext } from "react";
 import { CarritoContext } from "../CarritoContext";
+import { Link } from "react-router-dom";
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 function CardProducto({producto, añadido}) {
-    const {añadirIdProducto, quitarProducto} = useContext(CarritoContext)
+    const {añadirIdProducto, quitarIdProducto} = useContext(CarritoContext)
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -22,7 +24,11 @@ function CardProducto({producto, añadido}) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Link href={`/productos/${producto.id}`} underline="hover" variant="button">Más información</Link>
+                <Link to={`productos/${producto.id}`}>
+                    <Typography variant="button">
+                        Más información
+                    </Typography>
+                </Link>
                 <Button disabled={añadido} onClick={() => {
                     añadirIdProducto(producto.id)
                 }}>
@@ -31,9 +37,9 @@ function CardProducto({producto, añadido}) {
                 {
                     añadido ?
                         <Button onClick={() => {
-                            quitarProducto(producto.id)
+                            quitarIdProducto(producto.id)
                         }}>
-                            <Typography>Quitar</Typography>
+                            <RemoveShoppingCartIcon></RemoveShoppingCartIcon>
                         </Button> :
                         <></>
                 }
@@ -41,5 +47,5 @@ function CardProducto({producto, añadido}) {
         </Card>
     )
 }
-    
+
 export default CardProducto;

@@ -46,8 +46,8 @@ function Productos() {
             </div>
 
             <ListaProductos productos={productos.filter(p => 
-                p.category.includes(filtroCategoria) &&
-                p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+                    p.category.includes(filtroCategoria) &&
+                    p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
                 )}
             >
             </ListaProductos>

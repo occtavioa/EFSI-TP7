@@ -21,12 +21,12 @@ function Home() {
     }, [])
 
     return (
-        <div>
+        <>
             {
                 productosRandom &&
                     <ListaProductos productos={productosRandom}></ListaProductos>
             }
-        </div>
+        </>
     );
 }
 

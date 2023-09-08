@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import { Link } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { CarritoContext } from '../CarritoContext';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function App() {
   const [idProductosAñadidos, setIdProcutosAñadidos] = React.useState([])
@@ -18,7 +18,7 @@ function App() {
       ]
     )
   }
-  function quitarProducto(id) {
+  function quitarIdProducto(id) {
     setIdProcutosAñadidos(
       [
         idProductosAñadidos.splice(idProductosAñadidos.indexOf(id), 1)
@@ -27,7 +27,7 @@ function App() {
   }
 
   return (
-    <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarProducto}}>
+    <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarIdProducto}}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -38,22 +38,25 @@ function App() {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
-              <Link href="/">
-                <Typography variant="inherit" component="div" sx={{ flexGrow: 1 }} color="white">
+              <Link to={"/"}>
+                <Typography variant="inherit" sx={{ flexGrow: 1 }} color="white">
                   TP-7
                 </Typography>
               </Link>
             </IconButton>
-            <Link href='/productos' variant='inherit' marginRight={"1%"}>
-              <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+            <Link to={"productos"}>
+              <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
                 Productos
               </Typography>
             </Link>
-            <Link href='/contacto' variant='inherit'>
-              <Typography variant="button" component="div" sx={{ flexGrow: 1 }} color="white">
+            <Link to={"contacto"}>
+              <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
                 Contacto
               </Typography>
             </Link>
+              <Link to={"carrito"}>
+                <ShoppingCartIcon></ShoppingCartIcon>
+              </Link>
           </Toolbar>
         </AppBar>
       </Box>
