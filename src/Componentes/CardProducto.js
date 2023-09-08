@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { CarritoContext } from "../CarritoContext";
 
 function CardProducto({producto, añadido}) {
-    const {añadirIdProducto} = useContext(CarritoContext)
+    const {añadirIdProducto, quitarProducto} = useContext(CarritoContext)
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -28,6 +28,15 @@ function CardProducto({producto, añadido}) {
                 }}>
                     <AddShoppingCartIcon></AddShoppingCartIcon>
                 </Button>
+                {
+                    añadido ?
+                        <Button onClick={() => {
+                            quitarProducto(producto.id)
+                        }}>
+                            <Typography>Quitar</Typography>
+                        </Button> :
+                        <></>
+                }
             </CardActions>
         </Card>
     )

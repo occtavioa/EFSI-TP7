@@ -20,12 +20,14 @@ function App() {
   }
   function quitarProducto(id) {
     setIdProcutosAñadidos(
-      idProductosAñadidos.splice(idProductosAñadidos.findIndex(id))
+      [
+        idProductosAñadidos.splice(idProductosAñadidos.indexOf(id), 1)
+      ]
     )
   }
 
   return (
-    <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto}}>
+    <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarProducto}}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
