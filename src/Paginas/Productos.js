@@ -1,4 +1,5 @@
-import { FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { FormControl, MenuItem, Select, Stack, TextField } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import ListaProductos from "../Componentes/ListaProductos";
 
@@ -9,21 +10,21 @@ function Productos() {
     const [filtroBusqueda, setFiltroBusqueda] = useState("");
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products/categories')
-            .then(res => res.json())
-            .then(r => {
-                setCategorias(r)
+        axios.get('https://dummyjson.com/products/categories')
+            .then(r => setCategorias(r.data))
+        axios.get('https://dummyjson.com/products')
+            .then(res => {
+                setProductos(res.data.products)
             })
-        fetch('https://dummyjson.com/products')
-            .then(res => res.json())
-            .then(r => {
-                setProductos(r.products);
-            });
+            .catch(e => {
+                console.error(e);
+                setProductos([])
+            })
     }, [])
 
     return (
-        <div style={{display:"flex"}}>
-            <div>
+        <Stack direction={"row"}>
+            <Stack>
                 <FormControl fullWidth>
                     <TextField label="Buscar" variant="standard" onChange={e => {
                         setFiltroBusqueda(e.target.value)
@@ -34,6 +35,7 @@ function Productos() {
                         onChange={e => {
                             setFiltroCategoria(e.target.value)
                         }}
+                        value={""}
                     >
                         <MenuItem value={""} >Todas</MenuItem>
                         {
@@ -43,7 +45,7 @@ function Productos() {
                         }
                     </Select>
                 </FormControl>
-            </div>
+            </Stack>
 
             <ListaProductos productos={productos.filter(p => 
                     p.category.includes(filtroCategoria) &&
@@ -51,7 +53,7 @@ function Productos() {
                 )}
             >
             </ListaProductos>
-        </div>
+        </Stack>
     )
 }
 

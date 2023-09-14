@@ -1,22 +1,20 @@
+import { Stack } from "@mui/system"
 import { useContext } from "react"
 import { CarritoContext } from "../CarritoContext"
 import CardProducto from "./CardProducto"
 
 function ListaProductos({productos}) {
-    const {idProductosAñadidos} = useContext(CarritoContext)
-    console.log(idProductosAñadidos);
+    const {idProductosAñadidos, añadirIdProducto, quitarIdProducto} = useContext(CarritoContext)
     
     return (
-        <div style={{flexWrap: "wrap", display:"flex", flex: 1, justifyContent: "center", }}>
-            {
+        <Stack direction="row" flexWrap={"wrap"}>
+           {
                 productos.map(pr =>
                     pr &&
-                        <div key={pr.id} style={{margin: "1%"}}>
-                            <CardProducto producto={pr} añadido={idProductosAñadidos.includes(pr.id)}></CardProducto>               
-                        </div>
+                        <CardProducto producto={pr} añadido={idProductosAñadidos.includes(pr.id)} añadirProducto={añadirIdProducto} quitarProducto={quitarIdProducto} key={pr.id}></CardProducto>               
                 )
             }
-        </div>
+        </Stack>
     )
 }
 

@@ -7,24 +7,29 @@ import IconButton from '@mui/material/IconButton';
 import { Outlet, Link } from 'react-router-dom';
 import { CarritoContext } from '../CarritoContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from '@mui/material';
 
 function App() {
-  const [idProductosAñadidos, setIdProcutosAñadidos] = React.useState([])
-  function añadirIdProducto(id) {
-    setIdProcutosAñadidos(
+  const [idProductosAñadidos, setProductosAñadidos] = React.useState(new Array())
+  function añadirIdProducto(p) {
+    setProductosAñadidos(
       [
-        id,
+        p,
         ...idProductosAñadidos
       ]
     )
   }
-  function quitarIdProducto(id) {
-    setIdProcutosAñadidos(
+  function quitarIdProducto(p) {
+    setProductosAñadidos(
       [
-        idProductosAñadidos.splice(idProductosAñadidos.indexOf(id), 1)
+        ...idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1)
       ]
     )
   }
+
+  React.useEffect(() => {
+    console.log(idProductosAñadidos);
+  }, [idProductosAñadidos])
 
   return (
     <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarIdProducto}}>
@@ -44,19 +49,25 @@ function App() {
                 </Typography>
               </Link>
             </IconButton>
-            <Link to={"productos"}>
-              <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
-                Productos
-              </Typography>
-            </Link>
-            <Link to={"contacto"}>
-              <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
-                Contacto
-              </Typography>
-            </Link>
+            <Button>
+              <Link to={"productos"}>
+                <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
+                  Productos
+                </Typography>
+              </Link>
+            </Button>
+            <Button>
+              <Link to={"contacto"}>
+                <Typography variant="button" sx={{ flexGrow: 1 }} color="white">
+                  Contacto
+                </Typography>
+              </Link>
+            </Button>
+            <Button>
               <Link to={"carrito"}>
                 <ShoppingCartIcon></ShoppingCartIcon>
               </Link>
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>
