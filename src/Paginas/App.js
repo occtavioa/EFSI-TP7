@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,9 +7,10 @@ import { Outlet, Link } from 'react-router-dom';
 import { CarritoContext } from '../CarritoContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from '@mui/material';
+import { useState } from 'react';
 
 function App() {
-  const [idProductosAñadidos, setProductosAñadidos] = React.useState([])
+  const [idProductosAñadidos, setProductosAñadidos] = useState([])
   function añadirIdProducto(p) {
     setProductosAñadidos(
       [

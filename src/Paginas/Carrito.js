@@ -1,5 +1,4 @@
-import RemoveShoppingCart from "@mui/icons-material/RemoveShoppingCart"
-import { Button, IconButton, List, ListItem, Stack, Typography } from "@mui/material"
+import { IconButton, List, Stack, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
 import { CarritoContext } from "../CarritoContext"
 import CardProductoAñadido from "../Componentes/CardProductoAñadido"

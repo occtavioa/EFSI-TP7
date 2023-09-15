@@ -1,7 +1,5 @@
 import { Card, CardActions, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { useContext, useState } from "react";
-import { CarritoContext } from "../CarritoContext";
 import { Link } from "react-router-dom";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
