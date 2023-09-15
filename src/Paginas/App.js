@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from '@mui/material';
 
 function App() {
-  const [idProductosAñadidos, setProductosAñadidos] = React.useState(new Array())
+  const [idProductosAñadidos, setProductosAñadidos] = React.useState([])
   function añadirIdProducto(p) {
     setProductosAñadidos(
       [
@@ -20,16 +20,9 @@ function App() {
     )
   }
   function quitarIdProducto(p) {
-    setProductosAñadidos(
-      [
-        ...idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1)
-      ]
-    )
+    let a = idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1); 
+    setProductosAñadidos(a)
   }
-
-  React.useEffect(() => {
-    console.log(idProductosAñadidos);
-  }, [idProductosAñadidos])
 
   return (
     <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarIdProducto}}>
