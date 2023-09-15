@@ -3,12 +3,12 @@ import FormContacto from "../Componentes/FormContacto";
 
 function Contacto() {
     return (
-        <div>
-            <Typography component="div" sx={{ flexGrow: 1 }} variant="h3">
+        <>
+            <Typography>
                 Contactanos!
             </Typography>
             <FormContacto></FormContacto>
-        </div>
+        </>
     )
 }
 

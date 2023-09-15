@@ -1,12 +1,12 @@
 import { FormControl, TextareaAutosize } from "@mui/base";
-import { FormLabel, TextField } from "@mui/material";
+import { Button, FormGroup, FormLabel, Stack, TextField } from "@mui/material";
 
 function FormContacto() {
     return (
-        <form onSubmit={e => {
-            e.preventDefault();
+        <FormGroup onSubmit={(e) => {
+            e.preventDefault()
         }}>
-            <div style={{display:"flex"}}>
+            <Stack direction={"row"}>
                 <FormControl>
                     <TextField label="Nombre" required></TextField>
                 </FormControl>
@@ -16,16 +16,16 @@ function FormContacto() {
                 <FormControl>
                     <TextField label="Email" required></TextField>
                 </FormControl>
-            </div>
+            </Stack>
 
-            <div style={{display: "flex"}}>
+            <Stack direction={"row"}>
                 <FormControl>
                     <FormLabel htmlFor="mensaje">Tu mensaje</FormLabel>
                     <TextareaAutosize id="mensaje" required></TextareaAutosize>
                 </FormControl>
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
+                <Button type="submit">Enviar</Button>
+            </Stack>
+        </FormGroup>
     )
 }
 

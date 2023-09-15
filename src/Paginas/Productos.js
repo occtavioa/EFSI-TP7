@@ -47,12 +47,14 @@ function Productos() {
                 </FormControl>
             </Stack>
 
-            <ListaProductos productos={productos.filter(p => 
-                    p.category.includes(filtroCategoria) &&
-                    p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
-                )}
-            >
-            </ListaProductos>
+            <Stack>
+                <ListaProductos productos={productos.filter(p => 
+                        p.category.includes(filtroCategoria) &&
+                        p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
+                    )}
+                >
+                </ListaProductos>
+            </Stack>
         </Stack>
     )
 }
