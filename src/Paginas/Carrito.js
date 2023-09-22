@@ -24,7 +24,7 @@ function Carrito() {
     }, [idProductosAñadidos])
     
     return (
-        <Stack>
+        <>
             <List>
                 {
                     productos.map((p) =>
@@ -33,14 +33,12 @@ function Carrito() {
                 }
             </List>
             <Button>
-                <IconButton>
-                    <Link to={"/productos"}>
-                        <AddIcon></AddIcon>
-                        <Typography>Agregar producto</Typography>
-                    </Link>
-                </IconButton>
+                <Link to={"/productos"}>
+                    <AddIcon></AddIcon>
+                    <Typography>Agregar producto</Typography>
+                </Link>
             </Button>
-        </Stack>
+        </>
     )
 }
 
