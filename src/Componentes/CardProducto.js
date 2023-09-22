@@ -3,7 +3,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Link } from "react-router-dom";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
-function CardProducto({producto, añadirProducto, quitarProducto, añadido}) {
+function CardProducto({producto, añadirIdProducto, quitarIdProducto, añadido}) {
     return (
         <Card sx={{ maxWidth: 345, margin: "1%" }}>
             <CardMedia
@@ -26,14 +26,14 @@ function CardProducto({producto, añadirProducto, quitarProducto, añadido}) {
                     </Typography>
                 </Link>
                 <Button disabled={añadido} onClick={() => {
-                    añadirProducto(producto.id)
+                    añadirIdProducto(producto.id)
                 }}>
                     <AddShoppingCartIcon></AddShoppingCartIcon>
                 </Button>
                 {
                     añadido ?
                         <Button onClick={() => {
-                            quitarProducto(producto.id)
+                            quitarIdProducto(producto.id)
                         }}>
                             <RemoveShoppingCartIcon></RemoveShoppingCartIcon>
                         </Button> :

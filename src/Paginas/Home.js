@@ -7,7 +7,7 @@ function Home() {
 
     useEffect(() => {
         axios.get('https://dummyjson.com/products')
-            .then(res => res.data)
+            .then(r => r.data)
             .then(data => data.products)
             .then(products => {
                 let prs = [];

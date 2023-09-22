@@ -11,20 +11,27 @@ function Productos() {
 
     useEffect(() => {
         axios.get('https://dummyjson.com/products/categories')
-            .then(r => setCategorias(r.data))
+            .then(r => r.data)
+            .then(data => {
+                setCategorias(data)
+            })
+            .catch(e => {
+                console.error(e)
+            })
         axios.get('https://dummyjson.com/products')
-            .then(res => {
-                setProductos(res.data.products)
+            .then(r => r.data)
+            .then(data => data.products)
+            .then(products => {
+                setProductos(products)
             })
             .catch(e => {
                 console.error(e);
-                setProductos([])
             })
     }, [])
 
     return (
-        <Stack direction={"row"}>
-            <Stack>
+        <Stack flexDirection={"row"}>
+            <Stack alignSelf={"flex-start"}>
                 <FormControl fullWidth>
                     <TextField label="Buscar" variant="standard" onChange={e => {
                         setFiltroBusqueda(e.target.value)
@@ -47,7 +54,7 @@ function Productos() {
                 </FormControl>
             </Stack>
 
-            <Stack>
+            <Stack alignSelf={"flex-end"}>
                 <ListaProductos productos={productos.filter(p => 
                         p.category.includes(filtroCategoria) &&
                         p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())

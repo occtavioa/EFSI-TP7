@@ -7,11 +7,11 @@ function ListaProductos({productos}) {
     const {idProductosAñadidos, añadirIdProducto, quitarIdProducto} = useContext(CarritoContext)
     
     return (
-        <Stack direction="row" flexWrap={"wrap"}>
+        <Stack flexDirection="row" flexWrap={"wrap"} justifyContent={"space-evenly"}>
            {
                 productos.map(pr =>
                     pr &&
-                        <CardProducto producto={pr} añadido={idProductosAñadidos.includes(pr.id)} añadirProducto={añadirIdProducto} quitarProducto={quitarIdProducto} key={pr.id}></CardProducto>               
+                        <CardProducto producto={pr} añadido={idProductosAñadidos.includes(pr.id)} añadirIdProducto={añadirIdProducto} quitarIdProducto={quitarIdProducto} key={pr.id}></CardProducto>               
                 )
             }
         </Stack>

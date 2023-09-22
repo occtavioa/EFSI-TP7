@@ -20,8 +20,8 @@ function App() {
     )
   }
   function quitarIdProducto(p) {
-    let a = idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1); 
-    setProductosAñadidos(a)
+    // let a = idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1); 
+    setProductosAñadidos([...idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1)])
   }
 
   return (
@@ -64,7 +64,7 @@ function App() {
           </Toolbar>
         </AppBar>
       </Box>
-
+      
       <Outlet></Outlet>
     </CarritoContext.Provider>
   );
