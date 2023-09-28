@@ -61,7 +61,6 @@ function Productos() {
                                 .then(r => r.data)
                                 .then(data => data.products)
                                 .then(productsB => {
-                                    console.log(productsB);
                                     setProductos(productsC.filter(p => productsB.map(p => p.id).includes(p.id)))
                                 })
                                 .catch(e => {

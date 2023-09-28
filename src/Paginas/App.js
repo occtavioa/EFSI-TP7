@@ -7,22 +7,16 @@ import { Outlet, Link } from 'react-router-dom';
 import { CarritoContext } from '../CarritoContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [idProductosAñadidos, setProductosAñadidos] = useState([])
   function añadirIdProducto(p) {
-    console.log(idProductosAñadidos.indexOf(p), p);
     setProductosAñadidos(idProductosAñadidos.toSpliced(0, 0, p))
   }
   function quitarIdProducto(p) {
-    console.log(idProductosAñadidos.indexOf(p), p);
     setProductosAñadidos(idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1))
   }
-
-  useEffect(() => {
-    console.log(idProductosAñadidos);
-  }, [idProductosAñadidos])
 
   return (
     <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarIdProducto}}>
