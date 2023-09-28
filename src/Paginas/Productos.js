@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select, Stack, TextField } from "@mui/material";
+import { Button, FormControl, MenuItem, Select, Stack, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListaProductos from "../Componentes/ListaProductos";
@@ -6,7 +6,7 @@ import ListaProductos from "../Componentes/ListaProductos";
 function Productos() {
     const [productos, setProductos] = useState([])
     const [categorias, setCategorias] = useState([]);
-    const [filtroCategoria, setFiltroCategoria] = useState();
+    const [filtroCategoria, setFiltroCategoria] = useState("");
     const [filtroBusqueda, setFiltroBusqueda] = useState("");
 
     useEffect(() => {
@@ -18,11 +18,7 @@ function Productos() {
             .catch(e => {
                 console.error(e)
             })
-    }, [])
-
-    useEffect(() => {
-        let url = categorias.includes(filtroCategoria) ? `https://dummyjson.com/products/category/${filtroCategoria}` : "https://dummyjson.com/products"
-        axios.get(url)
+        axios.get("https://dummyjson.com/products")
             .then(r => r.data)
             .then(data => data.products)
             .then(products => {
@@ -31,8 +27,7 @@ function Productos() {
             .catch(e => {
                 console.error(e)
             })
-        
-    }, [filtroCategoria])
+    }, [])
     
     return (
         <Stack flexDirection={"row"}>
@@ -57,14 +52,40 @@ function Productos() {
                         }
                     </Select>
                 </FormControl>
+                <Button onClick={async () => {
+                    axios.get(categorias.includes(filtroCategoria) ? `https://dummyjson.com/products/category/${filtroCategoria}` : "https://dummyjson.com/products")
+                        .then(r => r.data)
+                        .then(data => data.products)
+                        .then(productsC => {
+                            axios.get(`https://dummyjson.com/products/search?q=${filtroBusqueda}`)
+                                .then(r => r.data)
+                                .then(data => data.products)
+                                .then(productsB => {
+                                    console.log(productsB);
+                                    setProductos(productsC.filter(p => productsB.map(p => p.id).includes(p.id)))
+                                })
+                                .catch(e => {
+                                    console.error(e);
+                                })
+                        })
+                        .catch(e => {
+                            console.error(e)
+                        })
+                }}>
+                    Filtrar
+                </Button>
             </Stack>
 
             <Stack alignSelf={"flex-end"}>
-                <ListaProductos productos={productos.filter(p => 
-                        p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
-                    )}
-                >
-                </ListaProductos>
+                {
+                    productos.length > 0 ?
+                        <ListaProductos productos={productos}
+                        >
+                        </ListaProductos> :
+                        <Typography>
+                            No se encontraron productos
+                        </Typography>
+                }
             </Stack>
         </Stack>
     )
