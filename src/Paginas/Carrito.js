@@ -1,4 +1,4 @@
-import { Button, IconButton, List, Stack, Typography } from "@mui/material"
+import { Button, List, Stack, Typography } from "@mui/material"
 import { useContext, useEffect, useState } from "react"
 import { CarritoContext } from "../CarritoContext"
 import CardProductoAñadido from "../Componentes/CardProductoAñadido"
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import axios from "axios";
 
 function Carrito() {
-    const {idProductosAñadidos, quitarIdProducto} = useContext(CarritoContext)
+    const { idProductosAñadidos, quitarIdProducto } = useContext(CarritoContext)
     const [productos, setProductos] = useState([])
 
     useEffect(() => {
@@ -22,16 +22,24 @@ function Carrito() {
                 setProductos([])
             })
     }, [idProductosAñadidos])
-    
+
     return (
         <>
-            <List>
-                {
-                    productos.map((p) =>
-                        <CardProductoAñadido producto={p} quitarProducto={quitarIdProducto} key={p.id}></CardProductoAñadido>
-                    )
-                }
-            </List>
+            <Stack flexDirection={"row"}>
+                <List>
+                    {
+                        productos.map((p) =>
+                            <CardProductoAñadido producto={p} quitarProducto={quitarIdProducto} key={p.id}></CardProductoAñadido>
+                        )
+                    }
+                </List>
+                <Typography alignSelf={"center"}>
+                    $
+                    {
+                        productos.map((p) => p.price).reduce((accumulator, current) => accumulator+current, 0)
+                    }
+                </Typography>
+            </Stack>
             <Button>
                 <Link to={"/productos"}>
                     <AddIcon></AddIcon>

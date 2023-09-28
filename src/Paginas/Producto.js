@@ -26,7 +26,7 @@ function Producto() {
 
     useEffect(() => {
         if (producto) {
-            setImagenSeleccionada([producto.images[0], 0])
+            setImagenSeleccionada(producto.images[0])
         }
     }, [producto])
 
@@ -35,25 +35,25 @@ function Producto() {
             {
                 producto ?
                     <>
-                        <Stack flexDirection={"row"} >
-                            <ImageList cols={1} sx={{ width: "20%" }} >
-                                {
-                                    producto.images.map((img, i) =>
-                                        <ImageListItem key={i} onClick={() => {
-                                            setImagenSeleccionada([img, i])
-                                        }}
-                                        >
-                                            <img alt="" src={img}></img>
-                                        </ImageListItem>
-                                    )
-                                }
-                            </ImageList>
+                        <ImageList sx={{ width: "20%" }}>
+                            {
+                                producto.images.map((img, i) =>
+                                    <ImageListItem key={i} onClick={() => {
+                                        setImagenSeleccionada(img)
+                                    }}
+                                    >
+                                        <img alt="" src={img}></img>
+                                    </ImageListItem>
+                                )
+                            }
+                        </ImageList>
+                        <ImageListItem>
                             {
                                 imagenSeleccionada ?
-                                <img alt={producto.description} src={imagenSeleccionada[0]}></img> :
-                                <></>
+                                    <img alt={producto.description} src={imagenSeleccionada}></img> :
+                                    <></>
                             }
-                        </Stack>
+                        </ImageListItem>
                         <Stack alignSelf={"center"}>
                             <Typography>
                                 Nombre: {producto.title}

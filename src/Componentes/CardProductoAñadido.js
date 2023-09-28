@@ -9,10 +9,13 @@ function CardProductoAñadido({producto, quitarProducto}) {
             </ListItemAvatar>
             <Typography>{producto.description}</Typography>
             <ListItemButton onClick={() => {
-                quitarProducto(producto.description)
+                quitarProducto(producto.id)
             }}>
                 <RemoveShoppingCart></RemoveShoppingCart>
             </ListItemButton>
+            <Typography>
+                $ {producto.price}
+            </Typography>
         </ListItem>
     )
 }

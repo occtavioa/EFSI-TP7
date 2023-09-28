@@ -6,7 +6,7 @@ import ListaProductos from "../Componentes/ListaProductos";
 function Productos() {
     const [productos, setProductos] = useState([])
     const [categorias, setCategorias] = useState([]);
-    const [filtroCategoria, setFiltroCategoria] = useState("");
+    const [filtroCategoria, setFiltroCategoria] = useState();
     const [filtroBusqueda, setFiltroBusqueda] = useState("");
 
     useEffect(() => {
@@ -18,17 +18,22 @@ function Productos() {
             .catch(e => {
                 console.error(e)
             })
-        axios.get('https://dummyjson.com/products')
+    }, [])
+
+    useEffect(() => {
+        let url = categorias.includes(filtroCategoria) ? `https://dummyjson.com/products/category/${filtroCategoria}` : "https://dummyjson.com/products"
+        axios.get(url)
             .then(r => r.data)
             .then(data => data.products)
             .then(products => {
                 setProductos(products)
             })
             .catch(e => {
-                console.error(e);
+                console.error(e)
             })
-    }, [])
-
+        
+    }, [filtroCategoria])
+    
     return (
         <Stack flexDirection={"row"}>
             <Stack alignSelf={"flex-start"}>
@@ -42,7 +47,7 @@ function Productos() {
                         onChange={e => {
                             setFiltroCategoria(e.target.value)
                         }}
-                        value={""}
+                        defaultValue={""}
                     >
                         <MenuItem value={""} >Todas</MenuItem>
                         {
@@ -56,7 +61,6 @@ function Productos() {
 
             <Stack alignSelf={"flex-end"}>
                 <ListaProductos productos={productos.filter(p => 
-                        p.category.includes(filtroCategoria) &&
                         p.title.toLowerCase().includes(filtroBusqueda.toLowerCase())
                     )}
                 >
