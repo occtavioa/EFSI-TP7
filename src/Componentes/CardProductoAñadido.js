@@ -10,7 +10,8 @@ function CardProductoAñadido({producto, quitarProducto}) {
             <Typography>{producto.description}</Typography>
             <ListItemButton onClick={() => {
                 quitarProducto(producto.id)
-            }}>
+            }}
+            >
                 <RemoveShoppingCart></RemoveShoppingCart>
             </ListItemButton>
             <Typography>

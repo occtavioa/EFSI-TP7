@@ -7,10 +7,11 @@ import { Outlet, Link } from 'react-router-dom';
 import { CarritoContext } from '../CarritoContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [idProductosAñadidos, setProductosAñadidos] = useState([])
+  const [idProductosAñadidos, setProductosAñadidos] = useState(localStorage.getItem("idProductosAñadidos") === null ? [] : JSON.parse(localStorage.getItem("idProductosAñadidos")))
+
   function añadirIdProducto(p) {
     setProductosAñadidos(idProductosAñadidos.toSpliced(0, 0, p))
   }
@@ -18,6 +19,10 @@ function App() {
     setProductosAñadidos(idProductosAñadidos.toSpliced(idProductosAñadidos.indexOf(p), 1))
   }
 
+  useEffect(() => {
+    localStorage.setItem("idProductosAñadidos", JSON.stringify(idProductosAñadidos))
+  }, [idProductosAñadidos])
+  
   return (
     <CarritoContext.Provider value={{idProductosAñadidos, añadirIdProducto, quitarIdProducto}}>
       <Box sx={{ flexGrow: 1 }}>
